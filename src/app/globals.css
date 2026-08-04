@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --chess-dark: #1a1a2e;
+  --chess-darker: #0f0f1a;
+  --chess-accent: #e94560;
+  --chess-green: #4ecca3;
+  --chess-gold: #ffd700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  color: #eee;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e94560;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c73e54;
+}
+
+/* Chess board squares */
+.square-light {
+  background: #f0d9b5;
+}
+
+.square-dark {
+  background: #b58863;
+}
+
+.square-best-from {
+  background: #4ecca3 !important;
+  box-shadow: inset 0 0 0 3px #2d8a6e;
+}
+
+.square-best-to {
+  background: #ff6b6b !important;
+  box-shadow: inset 0 0 0 3px #c73e54;
+}
+
+/* Notification toast */
+.toast-enter {
+  animation: toastSlide 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes toastSlide {
+  from {
+    transform: translateX(120%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.toast-exit {
+  animation: toastOut 0.3s ease-in forwards;
+}
+
+@keyframes toastOut {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Screen capture overlay */
+.capture-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  border: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.capture-overlay.active {
+  border-color: #e94560;
+}
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.4);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(78, 204, 163, 0.4);
+}
+
+/* Scan line effect */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e94560, transparent);
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
